@@ -1,0 +1,38 @@
+# Quick showcase config — exercises the full pipeline end-to-end fast.
+# Not for convergence; for producing real artifacts (metrics, curves, report).
+scope:
+  name: mvp
+  channels: 1
+  sequence_length: 50
+latent:
+  num_categoricals: 32
+  num_classes: 32
+replay:
+  capacity: 5000
+  min_sequence_length: 50
+collection:
+  env_steps: 600          # a handful of episodes worth of real frames
+  action_sampling: uniform
+world_model:
+  batch_size: 4
+  checkpoint_interval: 50
+  checkpoint_path: checkpoints/world_model.pt
+gate:
+  loss_threshold: 0.02
+  consecutive_steps: 100
+behavior:
+  enabled: false
+  imagination_horizon: 10
+  lambda: 0.95
+evaluation:
+  episodes: 5
+  interval_iterations: 10
+pipeline:
+  iteration_count: 20
+  phases:
+    collection: true
+    world_model: true
+    behavior: false
+    evaluation: true
+baseline:
+  enabled: false

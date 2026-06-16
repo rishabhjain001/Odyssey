@@ -1,0 +1,38 @@
+# Virtual environment
+.venv/
+venv/
+env/
+
+# Python caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.pytest_cache/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# Spec / planning docs (not part of the shipped code)
+.kiro/
+
+# Training outputs & artifacts
+artifacts/
+checkpoints/
+metrics.json
+*.pt
+*.ckpt
+*.npy
+*.pdf
+
+# Logs
+*.log
+
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Environment file with secrets (keep .env.example tracked)
+.env

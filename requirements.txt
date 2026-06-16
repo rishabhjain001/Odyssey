@@ -1,0 +1,29 @@
+# Odyssey Python dependencies (Requirement 17.3)
+# Pinned to known-compatible versions for reproducibility.
+
+# Neural components (world model, behavior model) — custom PyTorch loops.
+torch==2.2.2
+
+# CarRacing-v2 environment and the Box2D physics backend it requires.
+gymnasium[box2d]==0.29.1
+
+# Model-free PPO baseline.
+stable-baselines3==2.3.2
+
+# Pure-Python dashboard.
+streamlit==1.36.0
+
+# Research-style PDF writeup generation.
+reportlab==4.2.2
+
+# 2D projection of sampled latents for the dashboard.
+umap-learn==0.5.6
+
+# Property-based testing.
+hypothesis==6.103.2
+
+# Array math used throughout preprocessing, replay, and metrics.
+numpy==1.26.4
+
+# YAML configuration loading.
+pyyaml==6.0.1

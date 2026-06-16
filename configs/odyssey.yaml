@@ -1,0 +1,43 @@
+# Odyssey central configuration (Req 17.2).
+#
+# The active scope's channel count and sequence length are read entirely from
+# this file (Req 9.1). Progressing from the grayscale MVP to RGB requires only
+# editing the values below -- no code change (Req 9.5):
+#   * mvp: name=mvp, channels=1, sequence_length=50
+#   * rgb: name=rgb, channels=3, sequence_length in (50, 200]
+scope:
+  name: mvp                 # mvp | rgb
+  channels: 1               # 1 grayscale (mvp), 3 rgb
+  sequence_length: 50       # 50 for mvp, (50,200] for rgb
+latent:
+  num_categoricals: 32
+  num_classes: 32
+replay:
+  capacity: 1000000         # 1..10_000_000
+  min_sequence_length: 50
+collection:
+  env_steps: 100000         # 1..100_000_000
+  action_sampling: uniform
+world_model:
+  batch_size: 16
+  checkpoint_interval: 1000
+  checkpoint_path: checkpoints/world_model.pt
+gate:
+  loss_threshold: 0.02
+  consecutive_steps: 100
+behavior:
+  enabled: false            # default disabled (Req 8.4)
+  imagination_horizon: 15
+  lambda: 0.95
+evaluation:
+  episodes: 10              # >= 5 for comparison
+  interval_iterations: 5
+pipeline:
+  iteration_count: 100
+  phases:
+    collection: true
+    world_model: true
+    behavior: false
+    evaluation: true
+baseline:
+  enabled: false
